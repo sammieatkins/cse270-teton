@@ -1,4 +1,3 @@
-# Github actions setting in pages searches for .github folder and anything inside the workflows folder.
 # Simple workflow for deploying static content to GitHub Pages
 name: Simple CI/CD Pipeline for CSE 270
 
@@ -45,10 +44,11 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Startup HTTP Server for pipeline tests
       uses: Eun/http-server-action@v1.0.11
-      with:
-        directory: 
-        # Might have to change to 5501.
-        port: 5500
+      with:        
+        directory: .
+        port: 5501 
+        index-files: |
+          ["index.html", "index.htm"]   
     - name: Run tests
       run: |
         pytest
